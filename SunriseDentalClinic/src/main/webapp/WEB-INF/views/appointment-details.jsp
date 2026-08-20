@@ -27,7 +27,10 @@ Appointment a = (Appointment) request.getAttribute("appointment");
 <tr><th>Total Bill</th><td><b><%= a.getTotalBill() %></b></td></tr>
 </table>
 <div class="actions">
+<div class="no-print">
 
+ 
+<a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Edit</a>
 <a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Update</a>
 
 <form method="post" action="appointments" onsubmit="return confirm('Delete this appointment?');">

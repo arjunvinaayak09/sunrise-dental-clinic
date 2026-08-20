@@ -28,7 +28,7 @@
         <% if ("RECEPTIONIST".equals(role)) { %>
             <a class="card" href="appointments">Register Appointment</a>
             <a class="card" href="appointments?action=all">View Appointments / Reports</a>
-            <a class="card" href="appointment-search.jsp">Update / View / Delete</a>
+            <a class="card" href="appointment-search.jsp">Update / Edit / Delete</a>
             <a class="card" href="bill.jsp">Calculate Bill</a>
         <% } %>
 
