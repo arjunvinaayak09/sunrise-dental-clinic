@@ -236,12 +236,12 @@ public class BillServlet extends HttpServlet {
             // If your BillDAO currently accepts double,
             // convert only when sending values to BillDAO.
             // -------------------------------------------------
-            billDAO.createBill(
-            		appointment.getAppointmentId(),
-                    consultationFee.doubleValue(),
-                    treatmentCost.doubleValue(),
-                    totalAmount.doubleValue()
-            );
+            //billDAO.createBill(
+            //		appointment.getAppointmentId(),
+            //        consultationFee.doubleValue(),
+             //       treatmentCost.doubleValue(),
+           //         totalAmount.doubleValue()
+          //  );
 
             // -------------------------------------------------
             // Send appointment to JSP

@@ -328,27 +328,14 @@ public class AppointmentDAO {
     private Appointment mapAppointment(
             ResultSet rs) throws Exception {
 
-        Appointment a =
-                new Appointment();
-
-
-        // =====================================================
-        // DATABASE PRIMARY KEY
-        // =====================================================
+        Appointment a = new Appointment();
 
         a.setAppointmentId(
                 rs.getInt("id")
         );
-
-
-        // =====================================================
-        // APPOINTMENT NUMBER
-        // =====================================================
-
         a.setAppointmentNo(
                 rs.getString("appointment_no")
         );
-
 
         // =====================================================
         // PATIENT DETAILS

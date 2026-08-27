@@ -32,7 +32,6 @@ public class Appointment {
         this.appointmentId = appointmentId;
     }
 
-
     // =========================================================
     // APPOINTMENT NUMBER
     // =========================================================
@@ -45,7 +44,6 @@ public class Appointment {
         this.appointmentNo = appointmentNo;
     }
 
-
     // =========================================================
     // PATIENT NAME
     // =========================================================
@@ -57,7 +55,6 @@ public class Appointment {
     public void setPatientName(String patientName) {
         this.patientName = patientName;
     }
-
 
     // =========================================================
     // ADDRESS
