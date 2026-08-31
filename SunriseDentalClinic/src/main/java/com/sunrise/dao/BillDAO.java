@@ -21,7 +21,9 @@ public class BillDAO {
                 "VALUES (?, ?, ?, ?)";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 

@@ -49,9 +49,10 @@ public class HelpServlet extends HttpServlet {
             return;
         }
 
-        // Open help.jsp
-        request.getRequestDispatcher(
-                "/help.jsp"
-        ).forward(request, response);
+     // Open help.jsp (lives under WEB-INF/views like the other views,
+     // so it isn't directly browsable and must go through this servlet)
+     request.getRequestDispatcher(
+             "/WEB-INF/views/help.jsp"
+     ).forward(request, response);
     }
 }

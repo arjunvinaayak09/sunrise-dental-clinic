@@ -26,7 +26,9 @@ public class AppointmentDAO {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
-                Connection con = DBConnection.getConnection();
+                Connection con = DBConnection
+                        .getInstance()
+                        .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -109,7 +111,9 @@ public class AppointmentDAO {
                 "WHERE appointment_no = ?";
 
         try (
-                Connection con = DBConnection.getConnection();
+                Connection con = DBConnection
+                        .getInstance()
+                        .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -154,7 +158,9 @@ public class AppointmentDAO {
                 "WHERE appointment_no = ?";
 
         try (
-                Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -225,7 +231,9 @@ public class AppointmentDAO {
                 "WHERE appointment_no = ?";
 
         try (
-                Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -266,7 +274,9 @@ public class AppointmentDAO {
                 "ORDER BY appointment_date, appointment_time";
 
         try (
-                Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()
         ) {
@@ -294,7 +304,9 @@ public class AppointmentDAO {
                 "SELECT COUNT(*) FROM appointments";
 
         try (
-                Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
                 PreparedStatement ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()
         ) {
@@ -316,27 +328,14 @@ public class AppointmentDAO {
     private Appointment mapAppointment(
             ResultSet rs) throws Exception {
 
-        Appointment a =
-                new Appointment();
-
-
-        // =====================================================
-        // DATABASE PRIMARY KEY
-        // =====================================================
+        Appointment a = new Appointment();
 
         a.setAppointmentId(
                 rs.getInt("id")
         );
-
-
-        // =====================================================
-        // APPOINTMENT NUMBER
-        // =====================================================
-
         a.setAppointmentNo(
                 rs.getString("appointment_no")
         );
-
 
         // =====================================================
         // PATIENT DETAILS

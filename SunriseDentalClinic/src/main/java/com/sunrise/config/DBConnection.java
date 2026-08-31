@@ -13,19 +13,31 @@ public final class DBConnection {
             + "&allowPublicKeyRetrieval=true";
 
     private static final String USER = "root";
-
     private static final String PASSWORD = "root";
 
+    // Singleton instance
+    private static DBConnection instance;
+
+    // Private constructor
     private DBConnection() {
     }
 
-    public static Connection getConnection()
-            throws SQLException {
+    // Return the single DBConnection manager instance
+    public static synchronized DBConnection getInstance() {
+
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+
+        return instance;
+    }
+
+    // Create a new JDBC connection when needed
+    public Connection getConnection() throws SQLException {
 
         try {
-            Class.forName(
-                    "com.mysql.cj.jdbc.Driver"
-            );
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
         } catch (ClassNotFoundException e) {
 
             throw new SQLException(

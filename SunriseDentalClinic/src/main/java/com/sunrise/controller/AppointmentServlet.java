@@ -18,17 +18,28 @@ public class AppointmentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!loggedIn(req)) { resp.sendRedirect("index.jsp"); return; }
         try {
-            String action = req.getParameter("action");
-            if ("view".equals(action) || "edit".equals(action)) {
-                Appointment a = service.find(req.getParameter("appointmentNo"));
-                req.setAttribute("appointment", a);
-                req.getRequestDispatcher("/WEB-INF/views/appointment-details.jsp").forward(req, resp);
-            } else if ("all".equals(action)) {
-                req.setAttribute("appointments", service.all());
-                req.getRequestDispatcher("/WEB-INF/views/reports.jsp").forward(req, resp);
-            } else {
-                req.getRequestDispatcher("/WEB-INF/views/register-appointment.jsp").forward(req, resp);
-            }
+        	String action = req.getParameter("action");
+        	if ("view".equals(action)) {
+        	    Appointment a = service.find(req.getParameter("appointmentNo"));
+        	    req.setAttribute("appointment", a);
+        	    req.getRequestDispatcher("/WEB-INF/views/appointment-details.jsp").forward(req, resp);
+        	} else if ("edit".equals(action)) {
+        	    // Load the appointment into the register/edit form so the
+        	    // receptionist can actually change patient/appointment details.
+        	    Appointment a = service.find(req.getParameter("appointmentNo"));
+        	    if (a == null) {
+        	        req.setAttribute("error", "Appointment not found. Please check the Appointment ID and try again.");
+        	        req.getRequestDispatcher("/WEB-INF/views/register-appointment.jsp").forward(req, resp);
+        	        return;
+        	    }
+        	    req.setAttribute("appointment", a);
+        	    req.getRequestDispatcher("/WEB-INF/views/register-appointment.jsp").forward(req, resp);
+        	} else if ("all".equals(action)) {
+        	    req.setAttribute("appointments", service.all());
+        	    req.getRequestDispatcher("/WEB-INF/views/reports.jsp").forward(req, resp);
+        	} else {
+        	    req.getRequestDispatcher("/WEB-INF/views/register-appointment.jsp").forward(req, resp);
+        	}
         } catch (Exception e) {
             throw new ServletException(e);
         }
