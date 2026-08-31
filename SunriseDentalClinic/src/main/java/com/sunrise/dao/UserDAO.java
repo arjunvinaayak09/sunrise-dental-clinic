@@ -20,7 +20,9 @@ public class UserDAO {
                 "VALUES (?, ?, ?, ?)";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -45,7 +47,9 @@ public class UserDAO {
                 "WHERE username = ? AND password_hash = ?";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -76,7 +80,9 @@ public class UserDAO {
                 "ORDER BY id";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery()
         ) {
@@ -100,7 +106,9 @@ public class UserDAO {
                 "WHERE id = ?";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -130,7 +138,9 @@ public class UserDAO {
                 "WHERE id = ?";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -157,7 +167,9 @@ public class UserDAO {
                 "WHERE id = ?";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
@@ -179,7 +191,9 @@ public class UserDAO {
                 "DELETE FROM users WHERE id = ?";
 
         try (
-            Connection con = DBConnection.getConnection();
+        		Connection con = DBConnection
+                .getInstance()
+                .getConnection();
             PreparedStatement ps = con.prepareStatement(sql)
         ) {
 
