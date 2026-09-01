@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.sunrise.model.Appointment" %>
 <%Appointment a = (Appointment) request.getAttribute("appointment");%>
+<%@ page import="com.sunrise.model.User" %>
+
+<%Appointment a = (Appointment) request.getAttribute("appointment");
+User currentUser = (User) session.getAttribute("user");
+boolean isDoctor = currentUser != null && "DOCTOR".equals(currentUser.getRole());%>
+
 <!DOCTYPE html>
 <html>
 <head><title>Appointment Details</title><link rel="stylesheet" href="assets/style.css"></head>
@@ -26,6 +32,13 @@
 </table>
 <div class="actions">
 
+
+
+
+<% if (!isDoctor) { %>
+<div class="actions">
+<div class="no-print">
+<a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Edit</a>
 <a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Update</a>
 
 <form method="post" action="appointments" onsubmit="return confirm('Delete this appointment?');">
@@ -33,6 +46,7 @@
 <input type="hidden" name="appointmentNo" value="<%= a.getAppointmentNo() %>">
 <button class="danger">Delete</button>
 
+<% } %>
 </form>
 </div>
 <% if ("registered".equals(request.getParameter("msg"))) { %><script>alert("Patient registered successfully");</script><% } %>

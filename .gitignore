@@ -1,1 +1,12 @@
 /target/
+/dist/
+/.m2/
+/.idea/
+/.settings/
+/.classpath
+/.project
+*.iml
+.DS_Store
+*.log
+/IMPLEMENTATION_REPORT.md
+/UML_UPDATE_REQUIREMENTS.md
