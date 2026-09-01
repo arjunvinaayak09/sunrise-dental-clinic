@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.sunrise.model.Appointment" %>
+<%Appointment a = (Appointment) request.getAttribute("appointment");%>
 <%@ page import="com.sunrise.model.User" %>
 
 <%Appointment a = (Appointment) request.getAttribute("appointment");
@@ -29,6 +30,8 @@ boolean isDoctor = currentUser != null && "DOCTOR".equals(currentUser.getRole())
 <tr><th>Treatment Cost</th><td><%= a.getTreatmentCost() %></td></tr>
 <tr><th>Total Bill</th><td><b><%= a.getTotalBill() %></b></td></tr>
 </table>
+<div class="actions">
+
 
 
 
@@ -42,6 +45,7 @@ boolean isDoctor = currentUser != null && "DOCTOR".equals(currentUser.getRole())
 <input type="hidden" name="action" value="delete">
 <input type="hidden" name="appointmentNo" value="<%= a.getAppointmentNo() %>">
 <button class="danger">Delete</button>
+
 <% } %>
 </form>
 </div>
