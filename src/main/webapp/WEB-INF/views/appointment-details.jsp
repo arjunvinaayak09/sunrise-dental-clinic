@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.sunrise.model.Appointment" %>
-<%@ page import="com.sunrise.model.User" %>
-
-<%Appointment a = (Appointment) request.getAttribute("appointment");
-User currentUser = (User) session.getAttribute("user");
-boolean isDoctor = currentUser != null && "DOCTOR".equals(currentUser.getRole());%>
-
+<%Appointment a = (Appointment) request.getAttribute("appointment");%>
 <!DOCTYPE html>
 <html>
 <head><title>Appointment Details</title><link rel="stylesheet" href="assets/style.css"></head>
@@ -29,20 +24,15 @@ boolean isDoctor = currentUser != null && "DOCTOR".equals(currentUser.getRole())
 <tr><th>Treatment Cost</th><td><%= a.getTreatmentCost() %></td></tr>
 <tr><th>Total Bill</th><td><b><%= a.getTotalBill() %></b></td></tr>
 </table>
-
-
-
-<% if (!isDoctor) { %>
 <div class="actions">
-<div class="no-print">
-<a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Edit</a>
+
 <a class="button" href="appointments?action=edit&appointmentNo=<%= a.getAppointmentNo() %>">Update</a>
 
 <form method="post" action="appointments" onsubmit="return confirm('Delete this appointment?');">
 <input type="hidden" name="action" value="delete">
 <input type="hidden" name="appointmentNo" value="<%= a.getAppointmentNo() %>">
 <button class="danger">Delete</button>
-<% } %>
+
 </form>
 </div>
 <% if ("registered".equals(request.getParameter("msg"))) { %><script>alert("Patient registered successfully");</script><% } %>
